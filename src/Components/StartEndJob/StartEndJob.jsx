@@ -5,18 +5,25 @@ import Box from "@mui/material/Box";
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import Button from "@mui/material/Button";
-import { useContext, useEffect, useState } from "react";
+import { createRef, useContext, useEffect, useState } from "react";
 import moment from "moment";
 import useGeoLocation from "../useGeoLocation";
 import { JobsContext } from "../../App";
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 
 export default function StartEndJob() {
 
   const [data, setData] = useContext(JobsContext);
   const [preview, setPreview] = useState();
   const [file, setFile] = useState();
+  let fileRef = createRef();
   const { id } = useParams();
   const job = data.find((item) => item.id == id);
+
+  const click = (e) => {
+    // console.log(e)
+    fileRef.current.click();
+  };
 
   const handlePreview = (e) => {
     setFile(e.target.files);
@@ -172,8 +179,10 @@ export default function StartEndJob() {
         <h3>Output: {difference}</h3>
       </Box>
 
-      <input type="file" onChange={(e) => handlePreview(e)} />
-      <img style={{marginTop: '20px', objectFit: 'contain', marginBottom: '30px', height: '300px', width: '350px'}} src={preview} />
+      <PhotoCameraIcon sx={{fontSize: '40px', '&:hover': {cursor: "pointer"}}} onClick={(e) => click(e)}  />
+
+      <input style={{ display: "none" }} ref={fileRef}  type="file" onChange={(e) => handlePreview(e)} />
+      <img style={{ objectFit: 'contain', marginBottom: '30px', height: '300px', width: '350px'}} src={preview} />
 
       { 
       result ? 
