@@ -181,7 +181,7 @@ export default function StartEndJob() {
       job.startStatus ? 
 
             <Button
-            sx={{ width: 150, mb: 2, bgcolor: '#f73123' }}
+            sx={{ width: 150, mb: 2, bgcolor: '#f73123',  '&:hover': {bgcolor: '#f73123'} }}
             variant="contained"
             color="success"
             onClick={endJobSubmit}
@@ -190,7 +190,7 @@ export default function StartEndJob() {
             </Button>
             :
             <Button
-            sx={{ width: 150, mb: 2, bgcolor: '#20bd2d' }}
+            sx={{ width: 150, mb: 2, bgcolor: '#20bd2d', '&:hover': {bgcolor: '#20bd2d'} }}
             variant="contained"
             color="success"
             onClick={startJobSubmit}
