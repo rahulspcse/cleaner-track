@@ -3,16 +3,23 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function AllJobs() {
   const jobs = jobsData;
   return (
-    <Box sx={{ my: 3 }}>
-      <Typography
-        sx={{ textAlign: "center", fontWeight: "bold", fontSize: "35px" }}
-      >
-        Today's Job
-      </Typography>
+    <Box sx={{ display: 'flex', flexDirection: 'column',alignItems: 'center', justifyContent: 'center', mx: 2 }}>
+    
+     <img width="200px" height="130px" src="https://citysight.com.au/wp-content/uploads/2020/11/400dpiLogo-JPG-1024x619.jpg" alt="logo" />
+     <Box sx={{display: 'flex', width: { xs: 300, sm: 360} }}>
+
+       <Link to="/"> <ArrowBackIcon sx={{fontSize: {xs:"32px", sm:"34px"}, mt: 0.8, color: '#535353'}}/> </Link>
+        <Typography
+          sx={{ ml: {xs: 5, sm: 7}, color: '#535353', fontWeight: "bold", fontSize: {xs:"28px", sm:"30px"} }}
+        >
+          Today's Job
+        </Typography>
+      </Box>
 
       <Box
         sx={{
@@ -27,33 +34,33 @@ export default function AllJobs() {
             jobs.map((job)=>(
                 <Box
           sx={{
-            border: "2px solid black",
             borderRadius: "9px",
-            bgcolor: "#ebe8e8",
-            my: 3,
+            bgcolor: "#F6F4FF",
+            my: 1.3,
             py: 3,
-            width: 360,
+            px: 1,
+            width: { xs: 280, sm: 360},
           }}
         >
-          <Typography sx={{ ml: 3, fontWeight: "bold", fontSize: "15px" }}>
+          <Box sx={{mx: 4}}>
+          <Typography sx={{ color: '#535353', fontSize: "15px" }}>
             Site Name
           </Typography>
           <Typography
             sx={{
-              textAlign: "center",
               fontWeight: "bold",
-              fontSize: "25px",
+              fontSize: {xs: '20px', sm:"25px"},
               color: "black",
             }}
           >
             {job.name}
           </Typography>
+          </Box>
           <Box sx={{ textAlign: "center" }}>
             <Link style={{ textDecoration: 'none' }} to={`/job/${job.id}`}>
             <Button
-              sx={{ width: 300, my: 2,  bgcolor: job.startStatus ? '#f73123' : '#20bd2d'}}
+              sx={{ width: {xs: 250, sm: 298}, mt: 2,  bgcolor: job.startStatus ? '#f73123' : '#3D3D96', '&:hover': {bgcolor: job.startStatus ? '#f73123' : '#3D3D96'}}}
               variant="contained"
-              color="success"
             >
               {job.startStatus ? 'End Job' : 'Start'}
             </Button>
