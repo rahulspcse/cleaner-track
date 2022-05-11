@@ -51,7 +51,7 @@ export default function AllJobs() {
           <Box sx={{ textAlign: "center" }}>
             <Link style={{ textDecoration: 'none' }} to={`/job/${job.id}`}>
             <Button
-              sx={{ width: 300, my: 2,  bgcolor: '#20bd2d'}}
+              sx={{ width: 300, my: 2,  bgcolor: job.startStatus ? '#f73123' : '#20bd2d'}}
               variant="contained"
               color="success"
             >

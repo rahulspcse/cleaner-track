@@ -5,15 +5,17 @@ import Box from "@mui/material/Box";
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import Button from "@mui/material/Button";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import moment from "moment";
 import useGeoLocation from "../useGeoLocation";
+import { JobsContext } from "../../App";
 
 export default function StartEndJob() {
+
+  const [data, setData] = useContext(JobsContext);
   const [preview, setPreview] = useState();
   const [file, setFile] = useState();
   const { id } = useParams();
-  const data = jobsData;
   const job = data.find((item) => item.id == id);
 
   const handlePreview = (e) => {
@@ -106,6 +108,10 @@ export default function StartEndJob() {
     const newObj = {};
     newObj.location= startCurrentLocation;
     newObj.startTime= moment().format('DD-MM-YYYY h:mm:ss a');
+    job.startDetails= newObj;
+    job.startStatus= true;
+    const temp_data = data.filter((item) => item.id != id);
+    setData([...temp_data, job]);
     setStartJobDetails(newObj);
   }
 
@@ -123,8 +129,12 @@ export default function StartEndJob() {
     const newObj = {};
     newObj.location= endCurrentLocation;
     newObj.endTime= moment().format('DD-MM-YYYY h:mm:ss a');
-    const tempObj= moment.duration(moment(newObj.endTime).diff(moment(startJobDetails.startTime)))._data;
-    const temp_total= `${tempObj.hours} hours ${tempObj.minutes} minutes ${tempObj.seconds} seconds`
+    const tempObj= moment.duration(moment(newObj.endTime).diff(moment(job.startDetails.startTime)))._data;
+    const temp_total= `${tempObj.hours} hours ${tempObj.minutes} minutes ${tempObj.seconds} seconds`;
+    job.endDetails = newObj;
+    job.totalTime= temp_total;
+    const temp_data = data.filter((item) => item.id != id);
+    setData([...temp_data, job]);
     setTotalTime(temp_total);
     setEndJobDetails(newObj);
   }
@@ -163,17 +173,29 @@ export default function StartEndJob() {
       </Box>
 
       <input type="file" onChange={(e) => handlePreview(e)} />
-      <img style={{marginTop: '20px', height: '300px', width: '350px'}} src={preview} />
+      <img style={{marginTop: '20px', objectFit: 'contain', marginBottom: '30px', height: '300px', width: '350px'}} src={preview} />
 
       { 
       result ? 
+      
+      job.startStatus ? 
+
             <Button
-            sx={{ width: 150, my: 2, bgcolor: '#20bd2d' }}
+            sx={{ width: 150, mb: 2, bgcolor: '#f73123' }}
+            variant="contained"
+            color="success"
+            onClick={endJobSubmit}
+            >
+            End Job
+            </Button>
+            :
+            <Button
+            sx={{ width: 150, mb: 2, bgcolor: '#20bd2d' }}
             variant="contained"
             color="success"
             onClick={startJobSubmit}
             >
-            {job.startStatus ? 'End Job' : 'Start Job'}
+            Start Job
             </Button>
         :
         <></>
@@ -186,6 +208,19 @@ export default function StartEndJob() {
             <h3>Start Job:</h3>
             <h5>Lat: {location.coordinates.lat} Lan: {location.coordinates.lan}</h5>
             <h6>Start Time: {startJobDetails.startTime}</h6>
+        </Box>
+        :
+        <></>
+        }
+
+        {
+        endJobDetails.location ?
+        <Box sx={{m: 5}}>
+            <h3>End Job:</h3>
+            <h5>Lat: {location.coordinates.lat} Lan: {location.coordinates.lan}</h5>
+            <h6>End Time: {endJobDetails.endTime}</h6>
+            <h6>Total Time: {totalTime}</h6>
+
         </Box>
         :
         <></>

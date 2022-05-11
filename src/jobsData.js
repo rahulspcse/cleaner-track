@@ -2,17 +2,38 @@ const jobsData = [
     {
         id: 1,
         name: 'ABCD Primary School',
-        startStatus: false
+        startStatus: false,
+        startDetails:{
+
+        },
+        endDetails:{
+
+        },
+        totalTime: ''
     },
     {
         id: 2,
         name: 'XYZ High School',
-        startStatus: false
+        startStatus: false,
+        startDetails:{
+
+        },
+        endDetails:{
+
+        },
+        totalTime: ''
     },
     {
         id: 3,
         name: 'PQR University',
-        startStatus: false
+        startStatus: false,
+        startDetails:{
+
+        },
+        endDetails:{
+
+        },
+        totalTime: ''
     }
 ];
 
