@@ -8,7 +8,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 export default function AllJobs() {
   const jobs = jobsData;
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column',alignItems: 'center', justifyContent: 'center', mx: 2 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column',alignItems: 'center', justifyContent: 'center',mb: 3, mx: 2 }}>
     
      <img width="200px" height="130px" src="https://citysight.com.au/wp-content/uploads/2020/11/400dpiLogo-JPG-1024x619.jpg" alt="logo" />
      <Box sx={{display: 'flex', width: { xs: 300, sm: 360} }}>
