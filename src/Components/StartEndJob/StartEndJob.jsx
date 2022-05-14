@@ -184,6 +184,22 @@ export default function StartEndJob() {
       <input style={{ display: "none" }} ref={fileRef}  type="file" onChange={(e) => handlePreview(e)} />
       <img style={{ objectFit: 'contain', marginBottom: '30px', height: '300px', width: '350px'}} src={preview} />
 
+      {
+        !result && 
+        <Typography
+        sx={{
+          textAlign: "center",
+          fontWeight: "bold",
+          fontSize: {xs: "14px", sm: "20px"},
+          color: 'red',
+          my: 4,
+        }}
+      >
+        You need to be in the site before starting a job
+      </Typography>
+
+      }
+
       { 
       result ? 
       
