@@ -136,7 +136,7 @@ export default function StartEndJob() {
     const newObj = {};
     newObj.location= endCurrentLocation;
     newObj.endTime= moment().format('DD-MM-YYYY h:mm:ss a');
-    const tempObj= moment.duration(moment(newObj.endTime).diff(moment(job.startDetails.startTime)))._data;
+    const tempObj= moment.duration(moment(newObj.endTime, 'DD-MM-YYYY h:mm:ss a').diff(moment(job.startDetails.startTime, 'DD-MM-YYYY h:mm:ss a').format()))._data;
     const temp_total= `${tempObj.hours} hours ${tempObj.minutes} minutes ${tempObj.seconds} seconds`;
     job.endDetails = newObj;
     job.totalTime= temp_total;
