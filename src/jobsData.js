@@ -2,7 +2,7 @@ const jobsData = [
     {
         id: 1,
         name: 'ABCD Primary School',
-        startStatus: false,
+        status: false,
         startDetails:{
 
         },
@@ -14,7 +14,7 @@ const jobsData = [
     {
         id: 2,
         name: 'XYZ High School',
-        startStatus: false,
+        status: false,
         startDetails:{
 
         },
@@ -26,7 +26,7 @@ const jobsData = [
     {
         id: 3,
         name: 'PQR University',
-        startStatus: false,
+        status: false,
         startDetails:{
 
         },
